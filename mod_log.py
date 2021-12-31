@@ -5,12 +5,12 @@ import os
 
 curr_file = ""
 
-
 def hex_dump(a):
     # return " ".join([f"0x{str(hex(c))[2:].zfill(2)}" for c in a])
     return " ".join([f"{str(hex(c))[2:].zfill(2)}" for c in a])
 
 def format_data(data):
+    global curr_file
     if len(data) == 0:
         return ""
 
@@ -36,5 +36,5 @@ def handle_data(log, data):
     server_message = ServerData()
     server_message.ParseFromString(data)
 
-    log(ServerData.Opcode.Name(server_message.opcode), format_data(server_message.data))
+    # log(ServerData.Opcode.Name(server_message.opcode), format_data(server_message.data))
     return data
